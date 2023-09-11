@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Converter Word
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center align-items-center vh-100">
+    <div class="col-auto">
+      <div class="mb-3"> 
+        {% include 'navbar.html' %}
+<form action="/processar_json/" method="post">
+  {% csrf_token %}
+  <div class="form-field">
+  <label for="messaging_product">Messaging Product:</label>
+  <div class="input-container">
+  <input type="text" name="messaging_product" required value="{{ initial_values.messaging_product }}">
+</div></div>
+  <div class="form-field">
+  <label for="recipient_type">Recipient Type:</label>
+  <div class="input-container">
+  <input type="text" name="recipient_type" required value="{{ initial_values.recipient_type }}">
+</div></div>
+  <div class="form-field">
+  <label for="to">To:</label>
+  <div class="input-container">
+  <input type="text" name="to" required value="{{ initial_values.to }}">
+</div></div>
+
+<div class="form-field">
+  <label for="type">Tipo:</label><br>
+  <div class="input-container">
+  <select name="type" id="type" required>
+    <option value="" disabled selected hidden>Selecione uma opção</option>
+      <option value="interactive">Interactive</option>
+      <option value="text">Text</option>
+      <option value="reaction">Reaction</option>
+      <option value="image">Image</option>
+      <option value="audio">Audio</option>
+      <option value="video">Vídeo</option>
+      <option value="document">Document</option>
+      <option value="template">Template</option>
+      <option value="location">Location</option>
+  </select></div></div>
+  
+  {% include 'type_msg/interactive.html' %}
+  {% include 'type_msg/text.html' %}
+  {% include 'type_msg/reaction.html' %}
+  {% include 'type_msg/image.html' %}
+  {% include 'type_msg/audio.html' %}
+  {% include 'type_msg/video.html' %}
+  {% include 'type_msg/document.html' %}
+  {% include 'type_msg/template.html' %}
+  {% include 'type_msg/location.html' %}
+  
+
+</form>
+<button type="submit">Construir JSON</button>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+  $(document).ready(function () {
+      var maxBotoes = 3;
+      var botaoCounter = 0;
+      
+      $("#adicionar-botao").click(function () {
+          if (botaoCounter < maxBotoes) {
+              var novoBotaoHTML = `
+              <div class="form-field">
+                <label>ID:</label>
+                <div class="input-container">
+                    <input class="id-input" type="text" name="button${botaoCounter}_id" required maxlength="256">
+                </div>
+            <br>
+                <label>Title:</label>
+                <div class="input-container">
+                    <input class="title-input" type="text" name="button${botaoCounter}_title" required maxlength="20" placeholder="Title (20 chars max)">
+                </div>
+            </div>
+              `;
+              $("#botoes-container").append(novoBotaoHTML);
+              botaoCounter++;
+          }
+      });
+  });
+</script>
+
+<script>
+  $(document).ready(function () {
+      $("select[name='type']").change(function () {
+          var selectedType = $(this).val();
+          $(".form-section").hide();
+          
+          if (selectedType !== "") {
+              $("#" + selectedType + "-fields").show();
+          }
+      });
+      
+      // Resto do seu script jQuery aqui...
+  });
+</script> 
+
+{% endblock %}

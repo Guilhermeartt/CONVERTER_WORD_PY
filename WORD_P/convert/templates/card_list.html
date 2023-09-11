@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Converter Word
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row justify-content-center align-items-center vh-100">
+    <div class="col-auto">
+      {% include 'navbar.html' %}
+      <div class="mb-3"> 
+        <!-- card_list.html -->
+        <h1>Lista de Cards</h1>
+        <form method="post">
+            {% csrf_token %}
+            <ul>
+                {% for msg in cards %}
+                    <li>
+                        <input type="checkbox" name="selected_messages" value="{{ msg.id }}">
+                        <h2>{{ msg.to }}</h2>
+                        <p>Tipo: {{ msg.type_msg }}</p>
+                        <p>ID do Áudio: {{ msg.audio_id }}</p>
+                        <p>ID do Documento: {{ msg.document_id }}</p>
+                        <p>Nome do Arquivo do Documento: {{ msg.document_filename }}</p>
+                        <p>ID da Imagem: {{ msg.image_id }}</p>
+                        <p>Texto do Cabeçalho: {{ msg.header_text }}</p>
+                        <p>Texto do Corpo: {{ msg.body_text }}</p>
+                        <p>Texto do Rodapé: {{ msg.footer_text }}</p>
+                        <p>Longitude: {{ msg.longitude }}</p>
+                        <p>Latitude: {{ msg.latitude }}</p>
+                        <p>Nome do Local: {{ msg.location_name }}</p>
+                        <p>Endereço do Local: {{ msg.location_address }}</p>
+                        <p>ID da Mensagem de Reação: {{ msg.reaction_msg_id }}</p>
+                        <p>Emoji da Reação: {{ msg.reaction_emoji }}</p>
+                        <p>Link do Vídeo: {{ msg.video_link }}</p>
+                        <p>Nome do Provedor de Vídeo: {{ msg.video_provider_name }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+            <button type="submit">Excluir Mensagens Selecionadas</button>
+        </form>
+        <a href="{% url 'create_message' %}">Criar Nova Mensagem</a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

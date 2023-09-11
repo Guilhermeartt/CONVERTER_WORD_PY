@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Converter Word
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row justify-content-center align-items-center vh-100">
+    <div class="col-auto">
+      {% include 'navbar.html' %}
+      <div class="mb-3"> 
+        <form enctype="multipart/form-data" method="POST" action="{% url 'index' %}">{% csrf_token %}
+        <label for="formFile" class="form-label">Selecione o arquivo word exportado como html para conversão</label>
+        <input name="my_file" class="form-control" type="file" id="formFile" accept=".html" multiple>
+        <br>
+        <input type="submit" class="btn btn-primary" value="Converter">
+      </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

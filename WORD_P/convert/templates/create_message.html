@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Converter Word
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row justify-content-center align-items-center vh-100">
+    <div class="col-auto">
+      {% include 'navbar.html' %}
+      <div class="mb-3"> 
+        <h1>Nova mensagem json</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Criar mensagem json</button>
+            </form>
+            <a href="{% url 'card_list' %}">Voltar para lista
+            </a>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

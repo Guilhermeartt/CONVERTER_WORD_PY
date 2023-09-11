@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Card Connections</title>
+</head>
+<body>
+    <div style="width: 800px; height: 600px;">
+        <div id="chart"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+    <script>
+        var cards = JSON.parse('{{ cards_json|escapejs }}');
+
+        var ctx = document.getElementById('chart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: cards.map(card => {
+                    return {
+                        label: card.title,
+                        data: [{x: card.x, y: card.y}],
+                        showLine: false,
+                        pointRadius: 10
+                    };
+                }),
+            },
+            options: {
+                scales: {
+                    x: { type: 'linear', position: 'bottom' },
+                    y: { type: 'linear', position: 'left' },
+                },
+                plugins: {
+                    legend: { display: true },
+                },
+            },
+        });
+    </script>
+</body>
+</html>

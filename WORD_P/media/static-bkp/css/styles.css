@@ -1,0 +1,55 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* styles.css */
+
+/* Estilo para o botão "Adicionar Botão" */
+#adicionar-botao {
+  background-color: lightgreen;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Estilo para o container dos botões extras */
+#botao-extra-container {
+  background-color: lightgreen;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+/* Estilo para os campos de botão extras */
+#botao-extra-container input {
+  margin-bottom: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* styles.css */
+
+/* Estilo para a barra de navegação */
+.navbar {
+  background-color: #f1f1f1;
+  overflow: hidden;
+}
+
+/* Estilo para os links de navegação */
+.navbar-link {
+  float: left;
+  display: block;
+  color: #333;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+/* Estilo para os links de navegação ao passar o mouse */
+.navbar-link:hover {
+  background-color: #ddd;
+}

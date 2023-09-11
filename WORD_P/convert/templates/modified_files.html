@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Converter Word
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center align-items-center vh-100">
+    <div class="col-auto">
+      <div class="mb-3"> 
+        <h2>Arquivos Modificados:</h2>
+        <ul>
+          {% for file_name in modified_files %}
+          <li><a href="media/{{ file_name }}">{{ file_name }}</a></li>
+          {% endfor %}
+        </ul>
+        <a href="javascript:history.go(-1)" class="btn btn-primary">Voltar</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

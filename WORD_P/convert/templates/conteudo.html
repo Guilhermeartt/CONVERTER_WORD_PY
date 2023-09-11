@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block title %}
+  Documento Word
+{% endblock %}
+
+{% block content %}
+
+<div class="container-sm" style="max-width: 900px">
+
+  <div class="row">
+    <div class="col align-self-center">
+  {{ conteudo|safe }}
+</div>
+
+</div>
+</div>
+<script>
+// Encontre todas as tags 'figure' com a classe 'PROimagem'
+var figureElements = document.querySelectorAll('figure.PROimagem');
+
+// Itere sobre os elementos encontrados
+for (var i = 0; i < figureElements.length; i++) {
+  var figureElement = figureElements[i];
+  var imgElement = figureElement.querySelector('img');
+
+  // Verifique se o elemento 'img' possui um atributo 'src' com o início '/static/'
+  if (imgElement && imgElement.getAttribute('src').startsWith('/static/')) {
+    var src = imgElement.getAttribute('src');
+    // Remova a primeira barra '/' do atributo 'src'
+    var newSrc = src.substr(1);
+    imgElement.setAttribute('src', newSrc);
+  }
+}
+
+</script>
+
+{% endblock %}
